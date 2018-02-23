@@ -1,5 +1,8 @@
 import React from 'react';
-import { Form, Input, Button} from 'antd';
+import $ from 'jquery';
+import { Form, Input, Button, message } from 'antd';
+import { API_ROOT } from './constants';
+
 const FormItem = Form.Item;
 
 class RegistrationForm extends React.Component {
@@ -7,14 +10,30 @@ class RegistrationForm extends React.Component {
     confirmDirty: false,
     autoCompleteResult: [],
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        $.ajax({
+          url: `${API_ROOT}/signup`,
+          method: 'POST',
+          data: JSON.stringify({
+            username: values.username,
+            password: values.password,
+          }),
+        }).then(function(response) {
+          message.success(response);
+        }, function(response) {
+          message.error(response.responseText);
+        }).catch(function(error) {
+          message.error(error);
+        });
       }
     });
   }
+
   handleConfirmBlur = (e) => {
     const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -62,13 +81,13 @@ class RegistrationForm extends React.Component {
     };
 
     return (
-      <Form onSubmit={this.handleSubmit} className='register-form'>
+      <Form onSubmit={this.handleSubmit} className="register-form">
         <FormItem
           {...formItemLayout}
           label="Username"
         >
           {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+            rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
           })(
             <Input />
           )}
