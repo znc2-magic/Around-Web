@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Icon, Input, Button} from 'antd';
+import {Link} from 'react-router-dom';
+
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
@@ -33,7 +35,7 @@ class NormalLoginForm extends React.Component {
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-            Don't have an account? <a href="/register">Register now!</a>
+            Don't have an account? <Link to="/register">Register now!</Link>
         </FormItem>
       </Form>
     );
