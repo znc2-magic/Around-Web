@@ -33,7 +33,7 @@ class NormalLoginForm extends React.Component {
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-            Don't have an account? <a href="">Register now!</a>
+            Don't have an account? <a href="/register">Register now!</a>
         </FormItem>
       </Form>
     );
