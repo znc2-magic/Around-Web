@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 const FormItem = Form.Item;
 
-class NormalLoginForm extends React.Component {
+class LoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -42,4 +42,4 @@ class NormalLoginForm extends React.Component {
   }
 }
 
-export const Login = Form.create()(NormalLoginForm);
+export const Login = Form.create()(LoginForm);
