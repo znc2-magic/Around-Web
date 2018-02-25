@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
             password: values.password,
           })
         }).then((response) => {
-          message.success(response);
+          message.success("You have successfully logged in.");
           this.props.loginHandler(response);
         }, (error) => {
           message.error(error.responseText);
