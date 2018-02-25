@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Icon, Input, Button} from 'antd';
+import { Form, Icon, Input, Button, message} from 'antd';
 import {Link} from 'react-router-dom';
 import {API_ROOT} from '../constants';
 import $ from 'jquery';
@@ -19,7 +19,13 @@ class LoginForm extends React.Component {
             username: values.username,
             password: values.password,
           })
-        })
+        }).then((response) => {
+          message.success(response);
+        }, (error) => {
+          message.error(error.responseText);
+        }).catch((error) => {
+          console.log(error);
+        });
       }
     });
   }
