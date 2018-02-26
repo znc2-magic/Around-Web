@@ -9,7 +9,7 @@ export class Header extends React.Component {
                 <img src={logo} className="App-logo" alt="logo" />
                 <h1 className="App-title">Around</h1>
               {
-                this.props.isLoggedIn ? <a href="/login" className="logout"><Icon type="logout" />{' '}Logout</a> : null
+                this.props.isLoggedIn ? <a onClick={this.props.logoutHandler} href="#" className="logout"><Icon type="logout" />{' '}Logout</a> : null
               }
             </header>
         );

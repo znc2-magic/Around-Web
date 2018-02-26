@@ -16,7 +16,8 @@ class App extends React.Component {
     });
   }
 
-  LogoutHandler = () => {
+  logoutHandler = () => {
+    localStorage.removeItem(TOKEN_KEY);
     this.setState({
       isLoggedIn: false,
     });
@@ -25,7 +26,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header isLoggedIn={this.state.isLoggedIn}/>
+        <Header isLoggedIn={this.state.isLoggedIn} logoutHandler={this.logoutHandler}/>
         <Main isLoggedIn={this.state.isLoggedIn} loginHandler={this.loginHandler}/>
       </div>
     );
