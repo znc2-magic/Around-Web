@@ -3,9 +3,9 @@ import $ from 'jquery';
 import { Tabs, Button, Spin } from 'antd';
 import {API_ROOT, GEO_OPTIONS, TOKEN_KEY, POS_KEY, AUTH_PREFIX} from '../constants';
 import {Gallery} from './Gallery';
+import {CreatePostButton} from './CreatePostButton';
 
 const TabPane = Tabs.TabPane;
-const operations = <Button>Extra Action</Button>;
 
 export class Home extends React.Component {
   state = {
@@ -75,8 +75,6 @@ export class Home extends React.Component {
     } else {
       return null;
     }
-
-    //return this.state.loadingGeoLocation ? <span>Loading geo location</span> : null;
   }
 
   loadNearbyPosts = () => {
@@ -110,8 +108,10 @@ export class Home extends React.Component {
   }
 
   render() {
+    const createPostButton = <CreatePostButton/>;
+
     return (
-        <Tabs tabBarExtraContent={operations} className="main-tabs">
+        <Tabs tabBarExtraContent={createPostButton} className="main-tabs">
           <TabPane tab="Posts" key="1">
             {this.getGalleryPanelContent()}
           </TabPane>
