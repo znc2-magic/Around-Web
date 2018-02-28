@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import { Tabs, Button, Spin } from 'antd';
 import {API_ROOT, GEO_OPTIONS, TOKEN_KEY, POS_KEY, AUTH_PREFIX} from '../constants';
+import {Gallery} from './Gallery';
 
 const TabPane = Tabs.TabPane;
 const operations = <Button>Extra Action</Button>;
@@ -11,6 +12,7 @@ export class Home extends React.Component {
     loadingGeoLocation: false,
     loadingPosts: false,
     error: '',
+    posts: [],
   }
 
   componentDidMount() {
@@ -57,7 +59,19 @@ export class Home extends React.Component {
     } else if (this.state.loadingGeoLocation) {
       return <Spin tip="Loading geo location..."/>;
     } else if (this.state.loadingPosts) {
-
+      return <Spin tip="Loading posts..."/>
+    } else if (this.state.posts && this.state.posts.length > 0) {
+      const  images = this.state.posts.map((post) => {
+        return {
+          user: post.user,
+          src: post.url,
+          thumbnail: post.url,
+          thumbnailWidth: 400,
+          thumbnailHeight: 300,
+          caption: post.message,
+        }
+      });
+      return <Gallery images={images}/>
     } else {
       return null;
     }
@@ -82,6 +96,7 @@ export class Home extends React.Component {
       this.setState({
         loadingPosts: false,
         error: '',
+        posts: response,
       });
     }, (error) => {
       console.log(error);
@@ -97,7 +112,9 @@ export class Home extends React.Component {
   render() {
     return (
         <Tabs tabBarExtraContent={operations} className="main-tabs">
-          <TabPane tab="Posts" key="1">{this.getGalleryPanelContent()}</TabPane>
+          <TabPane tab="Posts" key="1">
+            {this.getGalleryPanelContent()}
+          </TabPane>
           <TabPane tab="Map" key="2">Content of tab 2</TabPane>
         </Tabs>
     );
