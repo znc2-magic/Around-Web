@@ -2,12 +2,7 @@ import React from 'react';
 import {POS_KEY} from '../constants';
 import {AroundMarker} from './AroundMarker';
 
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-
-} from "react-google-maps";
+import {withScriptjs, withGoogleMap, GoogleMap} from 'react-google-maps';
 
 class AroundMap extends React.Component {
 
@@ -17,12 +12,12 @@ class AroundMap extends React.Component {
 
     return(
       <GoogleMap
-        defaultZoom={8}
+        defaultZoom={11}
         defaultCenter={{ lat: lat, lng: lon }}
       >
         {
           this.props.posts.map((post) =>
-            <AroundMarker post={post}/>
+            <AroundMarker post={post} key={post.url}/>
             // {/*<Marker*/}
             //   {/*position={{ lat: post.location.lat, lng: post.location.lon }}*/}
             //   {/*onClick={this.onToggleOpen}*/}
