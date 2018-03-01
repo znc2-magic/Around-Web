@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Tabs, Button, Spin } from 'antd';
+import { Tabs, Spin } from 'antd';
 import {API_ROOT, GEO_OPTIONS, TOKEN_KEY, POS_KEY, AUTH_PREFIX} from '../constants';
 import {Gallery} from './Gallery';
 import {CreatePostButton} from './CreatePostButton';
@@ -83,7 +83,7 @@ export class Home extends React.Component {
       loadingPosts: true,
       error: '',
     })
-    $.ajax({
+    return $.ajax({
       url: `${API_ROOT}/search?lat=${lat}&lon=${lon}&range=20`,
       method: 'GET',
       headers: {
@@ -108,7 +108,7 @@ export class Home extends React.Component {
   }
 
   render() {
-    const createPostButton = <CreatePostButton/>;
+    const createPostButton = <CreatePostButton loadNearbyPosts={this.loadNearbyPosts} />;
 
     return (
         <Tabs tabBarExtraContent={createPostButton} className="main-tabs">
