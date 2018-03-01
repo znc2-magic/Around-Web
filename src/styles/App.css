@@ -5,6 +5,7 @@
 @import "Header.css";
 @import "Home.css";
 @import 'AroundMarker.css';
+@import 'Gallery.css';
 
 .App {
   text-align: center;

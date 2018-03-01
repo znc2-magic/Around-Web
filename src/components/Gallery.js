@@ -22,7 +22,7 @@ export class Gallery extends Component {
       return {
         ...image,
         customOverlay: (
-          <div style={captionStyle}>
+          <div className='caption-style'>
             <div>{`${image.user}: ${image.caption}`}</div>
           </div>
         ),
@@ -30,7 +30,7 @@ export class Gallery extends Component {
     });
 
     return (
-      <div style={wrapperStyle}>
+      <div className='wrapper-style'>
         <GridGallery
           backdropClosesModal
           images={images}
@@ -40,22 +40,4 @@ export class Gallery extends Component {
   }
 }
 
-const wrapperStyle = {
-  display: "block",
-  minHeight: "1px",
-  width: "100%",
-  border: "1px solid #ddd",
-  overflow: "auto"
-};
 
-const captionStyle = {
-  backgroundColor: "rgba(0, 0, 0, 0.8)",
-  maxHeight: "240px",
-  overflow: "hidden",
-  position: "absolute",
-  bottom: "0",
-  width: "100%",
-  color: "white",
-  padding: "2px",
-  fontSize: "90%"
-};
